@@ -6,9 +6,12 @@ import "./App.css";
 
 const App: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Change default from "user" to "environment"
+  const [facingMode, setFacingMode] = useState<"user" | "environment">(
+    "environment"
+  );
   const [model, setModel] = useState<tf.LayersModel | null>(null);
   const [prediction, setPrediction] = useState<string>("");
-  const [facingMode, setFacingMode] = useState<"user" | "environment">("user");
 
   // Mapping for medicine classes
   const medicineMapping: { [key: number]: string } = {
