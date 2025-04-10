@@ -46,7 +46,7 @@
 
 .navbar-links li {
   cursor: pointer;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 /* Search icon styling */
