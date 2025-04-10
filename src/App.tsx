@@ -47,16 +47,17 @@ const App: React.FC = () => {
           stream.getTracks().forEach((track) => track.stop());
         }
 
-        // Define video constraints with an ideal resolution
+        // For the back camera, use an exact facingMode constraint to force a proper stream.
         const constraints = {
           video: {
-            facingMode,
+            facingMode:
+              facingMode === "environment" ? { exact: "environment" } : "user",
             width: { ideal: 1920 },
             height: { ideal: 1080 },
           },
         };
 
-        // Get the new stream based on the facingMode and resolution constraints
+        // Get the new stream based on facingMode and resolution constraints
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         videoElement.srcObject = stream;
       } catch (error) {
@@ -123,7 +124,7 @@ const App: React.FC = () => {
     setFacingMode((prevMode) => (prevMode === "user" ? "environment" : "user"));
   };
 
-  // Conditional styling: Mirror video only for front camera
+  // Conditional styling: Mirror video only for the front camera
   const getVideoStyles = () => {
     return facingMode === "user" ? { transform: "scaleX(-1)" } : {};
   };
