@@ -5,7 +5,11 @@ const NavBar: React.FC = () => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <img src="src/logo.png" alt="RxReader Logo" className="logo" />
+        <img
+          src="public/model/assets/logo.png"
+          alt="RxReader Logo"
+          className="logo"
+        />
         <div className="navbar-logo">RxReader</div>
       </div>
       <ul className="navbar-links">
