@@ -120,15 +120,24 @@ html, body {
     margin: 0 1rem;
     height: auto;
   }
-  .video-feed {
-    height: 250px;
-    margin-right: 10%;
-    width: 265px;
-
-  }
+  
   .info-panels {
     flex-direction: column;
     margin-right: 10%;
+  }
+
+  .switch-camera-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 44rem;
+  }
+  
+  .switch-camera-img {
+    width: 5px;  /* Adjust size as needed */
+    height: 5px; /* Adjust size as needed */
+    object-fit: contain;
   }
 }
 
