@@ -116,6 +116,10 @@ const App: React.FC = () => {
     setFacingMode((prevMode) => (prevMode === "user" ? "environment" : "user"));
   };
 
+  const getVideoStyles = () => {
+    return facingMode === "user" ? { transform: "scaleX(-1)" } : {};
+  };
+
   return (
     <div className="app">
       <NavBar />
@@ -140,7 +144,7 @@ const App: React.FC = () => {
               playsInline
               width="550"
               height="720"
-              style={{ transform: "scaleX(-1)" }}
+              style={getVideoStyles()}
             ></video>
           </div>
           <div className="info-panels">
