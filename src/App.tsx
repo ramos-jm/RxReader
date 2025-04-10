@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import NavBar from "./Navbar.tsx";
+import NavBar from "./Navbar";
 import * as tf from "@tensorflow/tfjs";
+import switchCameraImg from "../public/assets/switch.png";
 import "./App.css";
 
 const App: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [model, setModel] = useState<tf.LayersModel | null>(null);
   const [prediction, setPrediction] = useState<string>("");
+  const [facingMode, setFacingMode] = useState<"user" | "environment">("user");
 
   // Mapping for medicine classes
   const medicineMapping: { [key: number]: string } = {
@@ -32,22 +34,31 @@ const App: React.FC = () => {
     19: "Tramadol",
   };
 
-  // Start the webcam feed
+  // Start the webcam feed based on the current facingMode
   useEffect(() => {
     const startCamera = async () => {
       try {
         const videoElement = videoRef.current;
         if (!videoElement) return;
+
+        // Stop any existing stream if present
+        if (videoElement.srcObject) {
+          const stream = videoElement.srcObject as MediaStream;
+          stream.getTracks().forEach((track) => track.stop());
+        }
+
+        // Get the new stream based on the facingMode
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: { facingMode },
         });
         videoElement.srcObject = stream;
       } catch (error) {
         console.error("Error accessing webcam:", error);
       }
     };
+
     startCamera();
-  }, []);
+  }, [facingMode]);
 
   // Load the TensorFlow.js model
   useEffect(() => {
@@ -76,13 +87,12 @@ const App: React.FC = () => {
 
       interval = setInterval(async () => {
         if (video.readyState === video.HAVE_ENOUGH_DATA && ctx) {
-          // Capture a frame from the video
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           const imageTensor = tf.browser
             .fromPixels(canvas)
             .toFloat()
             .div(tf.scalar(255.0))
-            .expandDims(0); // Add batch dimension
+            .expandDims(0);
 
           const predictionTensor = model.predict(imageTensor) as tf.Tensor;
           const predictionData = await predictionTensor.data();
@@ -101,12 +111,27 @@ const App: React.FC = () => {
     }
   }, [model, medicineMapping]);
 
+  // Function to toggle the camera facing mode
+  const switchCamera = () => {
+    setFacingMode((prevMode) => (prevMode === "user" ? "environment" : "user"));
+  };
+
   return (
     <div className="app">
       <NavBar />
       <main className="main-content">
         <section className="video-section">
-          <h2>LIVE VIDEO FEED:</h2>
+          <h2>
+            LIVE VIDEO FEED:{" "}
+            <button onClick={switchCamera} className="switch-camera-btn">
+              <img
+                src={switchCameraImg}
+                alt="Switch Camera"
+                className="switch-camera-img"
+              />
+            </button>
+          </h2>
+
           <div className="video-feed">
             <video
               id="camera"
@@ -115,6 +140,7 @@ const App: React.FC = () => {
               playsInline
               width="550"
               height="720"
+              style={{ transform: "scaleX(-1)" }}
             ></video>
           </div>
           <div className="info-panels">

@@ -23,7 +23,6 @@ html, body {
 
 /* Main content wrapper */
 .main-content {
-  padding: 2rem;
   width: 100%;
 }
 
@@ -85,6 +84,22 @@ html, body {
   color: #fff;
   text-align: center;
 }
+
+.switch-camera-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-left: 44rem;
+}
+
+.switch-camera-img {
+  width: 20px;  /* Adjust size as needed */
+  height: 20px; /* Adjust size as needed */
+  object-fit: contain;
+}
+
+
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
