@@ -6,7 +6,7 @@ const NavBar: React.FC = () => {
     <nav className="navbar">
       <div className="navbar-brand">
         <img
-          src="public/model/assets/logo.png"
+          src="public/assets/logo1.png"
           alt="RxReader Logo"
           className="logo"
         />
