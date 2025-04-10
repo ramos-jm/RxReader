@@ -8,7 +8,10 @@
   padding: 1rem;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
 }
+
 
 /* Group logo and text together */
 .navbar-brand {
