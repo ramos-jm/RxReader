@@ -120,7 +120,7 @@ html, body {
     margin: 0 1rem;
     height: auto;
   }
-  
+
   .info-panels {
     flex-direction: column;
     margin-right: 10%;
@@ -131,7 +131,7 @@ html, body {
     border: none;
     padding: 0;
     cursor: pointer;
-    margin-left: 44rem;
+    margin-left: 1rem;
   }
   
   .switch-camera-img {
