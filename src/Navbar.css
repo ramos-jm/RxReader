@@ -12,7 +12,7 @@
 
 /* Group logo and text together */
 .navbar-brand {
-  margin-left: 11%;
+  margin-left: 16%;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -38,7 +38,7 @@
   margin: 0;
   font-size: 14px;
   font-weight: 300;
-  margin-right: 10%;
+  margin-right: 15%;
 }
 
 .navbar-links li {

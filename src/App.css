@@ -116,27 +116,30 @@ html, body {
   .main-content {
     padding: 1rem;
   }
-  .video-section {
-    margin: 0 1rem;
-    height: auto;
-  }
+
 
   .info-panels {
     flex-direction: column;
-    margin-right: 10%;
   }
+  
+  .video-section h2 {
+    color: #0288D1;
+    margin-left: 1.5rem;
+    font-size: 1.8rem;
+  }
+
 
   .switch-camera-btn {
     background: transparent;
     border: none;
     padding: 0;
     cursor: pointer;
-    margin-left: 1rem;
+    margin-left: .5rem;
   }
   
   .switch-camera-img {
-    width: 5px;  /* Adjust size as needed */
-    height: 5px; /* Adjust size as needed */
+    width: 18px;  /* Adjust size as needed */
+    height: auto; /* Adjust size as needed */
     object-fit: contain;
   }
 }

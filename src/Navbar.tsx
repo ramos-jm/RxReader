@@ -11,7 +11,6 @@ const NavBar: React.FC = () => {
       </div>
       <ul className="navbar-links">
         <li>Home</li>
-        <li>Product</li>
         <li>About</li>
         <li>Contact</li>
         <li className="navbar-search"></li>
