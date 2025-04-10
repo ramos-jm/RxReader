@@ -34,7 +34,7 @@ const App: React.FC = () => {
     19: "Tramadol",
   };
 
-  // Start the webcam feed based on the current facingMode
+  // Start the webcam feed based on the current facingMode with resolution constraints
   useEffect(() => {
     const startCamera = async () => {
       try {
@@ -47,10 +47,17 @@ const App: React.FC = () => {
           stream.getTracks().forEach((track) => track.stop());
         }
 
-        // Get the new stream based on the facingMode
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode },
-        });
+        // Define video constraints with an ideal resolution
+        const constraints = {
+          video: {
+            facingMode,
+            width: { ideal: 1920 },
+            height: { ideal: 1080 },
+          },
+        };
+
+        // Get the new stream based on the facingMode and resolution constraints
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
         videoElement.srcObject = stream;
       } catch (error) {
         console.error("Error accessing webcam:", error);
@@ -92,7 +99,7 @@ const App: React.FC = () => {
             .fromPixels(canvas)
             .toFloat()
             .div(tf.scalar(255.0))
-            .expandDims(0);
+            .expandDims(0); // Add batch dimension
 
           const predictionTensor = model.predict(imageTensor) as tf.Tensor;
           const predictionData = await predictionTensor.data();
@@ -116,6 +123,7 @@ const App: React.FC = () => {
     setFacingMode((prevMode) => (prevMode === "user" ? "environment" : "user"));
   };
 
+  // Conditional styling: Mirror video only for front camera
   const getVideoStyles = () => {
     return facingMode === "user" ? { transform: "scaleX(-1)" } : {};
   };
@@ -135,7 +143,6 @@ const App: React.FC = () => {
               />
             </button>
           </h2>
-
           <div className="video-feed">
             <video
               id="camera"
