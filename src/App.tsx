@@ -128,6 +128,99 @@ const App: React.FC = () => {
     return facingMode === "user" ? { transform: "scaleX(-1)" } : {};
   };
 
+  const medicineInfo: {
+    [key: string]: { description: string; indication: string };
+  } = {
+    Azathioprine: {
+      description:
+        "An immunosuppressive medication used in organ transplants and autoimmune diseases.",
+      indication:
+        "Prevention of organ rejection, treatment of rheumatoid arthritis.",
+    },
+    Ceftriaxone: {
+      description: "A broad-spectrum cephalosporin antibiotic.",
+      indication:
+        "Bacterial infections such as pneumonia, meningitis, and gonorrhea.",
+    },
+    Chlorpromazine: {
+      description:
+        "An antipsychotic used to treat schizophrenia and bipolar disorder.",
+      indication: "Psychotic disorders, nausea, and vomiting.",
+    },
+    Ciprofloxacin: {
+      description:
+        "A fluoroquinolone antibiotic effective against many bacteria.",
+      indication: "Urinary tract infections, respiratory infections.",
+    },
+    Clarithromycin: {
+      description:
+        "A macrolide antibiotic used to treat various bacterial infections.",
+      indication: "Respiratory tract infections, skin infections.",
+    },
+    Dobutamine: {
+      description: "A medication that stimulates heart muscle contractions.",
+      indication: "Acute heart failure, cardiac stress testing.",
+    },
+    Fluoxetine: {
+      description: "An antidepressant of the SSRI class.",
+      indication: "Depression, OCD, panic disorder.",
+    },
+    Hydrochlorothiazide: {
+      description: "A diuretic used to treat high blood pressure and swelling.",
+      indication: "Hypertension, edema.",
+    },
+    Hydrocortisone: {
+      description: "A corticosteroid used to reduce inflammation.",
+      indication: "Allergic conditions, skin problems, adrenal insufficiency.",
+    },
+    Hydroxyzine: {
+      description: "An antihistamine with antianxiety effects.",
+      indication: "Anxiety, nausea, allergies, sleep aid.",
+    },
+    Ibuprofen: {
+      description: "A nonsteroidal anti-inflammatory drug (NSAID).",
+      indication: "Pain relief, inflammation, fever.",
+    },
+    Levothyroxine: {
+      description: "A synthetic thyroid hormone.",
+      indication: "Hypothyroidism.",
+    },
+    Lorazepam: {
+      description: "A benzodiazepine used to treat anxiety.",
+      indication: "Anxiety disorders, insomnia, seizures.",
+    },
+    Metronidazole: {
+      description: "An antibiotic and antiprotozoal medication.",
+      indication: "Bacterial and parasitic infections.",
+    },
+    Prednisolone: {
+      description: "A corticosteroid used to suppress the immune system.",
+      indication: "Inflammatory and autoimmune conditions.",
+    },
+    Quinine: {
+      description: "A medication used to treat malaria.",
+      indication: "Malaria, leg cramps.",
+    },
+    Risperidone: {
+      description: "An antipsychotic used to treat schizophrenia.",
+      indication:
+        "Schizophrenia, bipolar disorder, autism-related irritability.",
+    },
+    Rituximab: {
+      description:
+        "A monoclonal antibody used in autoimmune diseases and cancers.",
+      indication: "Lymphomas, leukemias, rheumatoid arthritis.",
+    },
+    Salbutamol: {
+      description: "A bronchodilator used to relieve asthma symptoms.",
+      indication: "Asthma, COPD.",
+    },
+    Tramadol: {
+      description: "A pain medication similar to opioids.",
+      indication: "Moderate to severe pain.",
+    },
+  };
+
   return (
     <div className="app">
       <NavBar />
@@ -156,10 +249,21 @@ const App: React.FC = () => {
           </div>
           <div className="info-panels">
             <div className="info-panel">
-              Generic Medicine: <strong>{prediction}</strong>
+              <span className="medicine-name">
+                Generic Medicine: {prediction}
+              </span>
+              <span className="medicine-description">
+                General Description:{" "}
+                {medicineInfo[prediction]?.description ||
+                  "No description available."}
+              </span>
             </div>
             <div className="info-panel">
-              Primary Indication: {/* Add additional info as needed */}
+              <span className="indication-title">Primary Indication:</span>
+              <span className="indication-text">
+                {medicineInfo[prediction]?.indication ||
+                  "No indication available."}
+              </span>
             </div>
           </div>
         </section>

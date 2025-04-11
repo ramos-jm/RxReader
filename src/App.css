@@ -70,22 +70,45 @@ html, body {
 /* Info panels container */
 .info-panels {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  
+  gap: 1.5rem;
 }
 
 /* Each info panel */
 .info-panel {
   background-color: #0288D1;
   flex: 1;
+  min-width: 0;
   min-height: 150px;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 20px;
   font-weight: 500;
   color: #fff;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.5;
+}
+
+/* Style for the title texts */
+.info-panel strong,
+.medicine-name,
+.indication-title {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+/* Style for description text */
+.medicine-description,
+.indication-text {
+  font-weight: 400;
+  font-size: 0.95rem;
 }
 
 .switch-camera-btn {
