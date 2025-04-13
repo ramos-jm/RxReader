@@ -77,7 +77,7 @@ const App: React.FC = () => {
     const loadModel = async () => {
       try {
         // Make sure this path is correct relative to your deployed application
-        const loadedModel = await tf.loadLayersModel("public/model/model.json");
+        const loadedModel = await tf.loadLayersModel("model/model.json");
         setModel(loadedModel);
         console.log("Model loaded successfully");
       } catch (error) {
