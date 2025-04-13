@@ -76,7 +76,8 @@ const App: React.FC = () => {
   useEffect(() => {
     const loadModel = async () => {
       try {
-        const loadedModel = await tf.loadLayersModel("/model/model.json");
+        // Make sure this path is correct relative to your deployed application
+        const loadedModel = await tf.loadLayersModel("public/model/model.json");
         setModel(loadedModel);
         console.log("Model loaded successfully");
       } catch (error) {
@@ -141,9 +142,9 @@ const App: React.FC = () => {
   };
 
   // Conditional styling: Mirror video only for front camera
-  const getVideoStyles = () => {
-    return facingMode === "user" ? { transform: "scaleX(-1)" } : {};
-  };
+  // const getVideoStyles = () => {
+  //   return facingMode === "user" ? { transform: "scaleX(-1)" } : {};
+  // };
 
   const medicineInfo: {
     [key: string]: { description: string; indication: string };
@@ -261,7 +262,7 @@ const App: React.FC = () => {
               playsInline
               width="550"
               height="720"
-              style={getVideoStyles()}
+              // style={getVideoStyles()}
             ></video>
           </div>
 
