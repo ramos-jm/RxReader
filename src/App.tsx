@@ -9,11 +9,6 @@ const App: React.FC = () => {
   const [model, setModel] = useState<tf.LayersModel | null>(null);
   const [prediction, setPrediction] = useState<string>("");
   const [facingMode, setFacingMode] = useState<"user" | "environment">("user");
-  const [confidenceLevel, setConfidenceLevel] = useState<number>(0);
-  const [isRecognizing, setIsRecognizing] = useState<boolean>(true);
-
-  // Confidence threshold for valid predictions
-  const CONFIDENCE_THRESHOLD = 0.7; // 70% confidence threshold
 
   // Mapping for medicine classes
   const medicineMapping: { [key: number]: string } = {
@@ -76,8 +71,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const loadModel = async () => {
       try {
-        // Make sure this path is correct relative to your deployed application
-        const loadedModel = await tf.loadLayersModel("model/model.json");
+        const loadedModel = await tf.loadLayersModel("/model/model.json");
         setModel(loadedModel);
         console.log("Model loaded successfully");
       } catch (error) {
@@ -109,26 +103,14 @@ const App: React.FC = () => {
 
           const predictionTensor = model.predict(imageTensor) as tf.Tensor;
           const predictionData = await predictionTensor.data();
-
-          // Find the index with the highest confidence
-          const maxConfidence = Math.max(...predictionData);
-          const predictedIndex = predictionData.indexOf(maxConfidence);
-
-          // Update confidence level state
-          setConfidenceLevel(maxConfidence);
-
-          // Check if confidence is above threshold
-          if (maxConfidence >= CONFIDENCE_THRESHOLD) {
-            setIsRecognizing(true);
-            setPrediction(medicineMapping[predictedIndex]);
-          } else {
-            setIsRecognizing(false);
-            setPrediction("Unknown");
-          }
+          const predictedIndex = predictionData.indexOf(
+            Math.max(...predictionData)
+          );
+          setPrediction(medicineMapping[predictedIndex] || "Unknown");
 
           tf.dispose([imageTensor, predictionTensor]);
         }
-      }, 1000); // Prediction interval
+      }, 2000); // Prediction interval
 
       return () => {
         clearInterval(interval);
@@ -141,7 +123,7 @@ const App: React.FC = () => {
     setFacingMode((prevMode) => (prevMode === "user" ? "environment" : "user"));
   };
 
-  // Conditional styling: Mirror video only for front camera
+  // // Conditional styling: Mirror video only for front camera
   // const getVideoStyles = () => {
   //   return facingMode === "user" ? { transform: "scaleX(-1)" } : {};
   // };
@@ -265,46 +247,25 @@ const App: React.FC = () => {
               // style={getVideoStyles()}
             ></video>
           </div>
-
-          {isRecognizing ? (
-            <div className="info-panels">
-              <div className="info-panel">
-                <span className="medicine-name">
-                  Generic Medicine: {prediction}
-                </span>
-                <span className="confidence-level">
-                  Confidence: {(confidenceLevel * 100).toFixed(2)}%
-                </span>
-                <span className="medicine-description">
-                  General Description:{" "}
-                  {medicineInfo[prediction]?.description ||
-                    "No description available."}
-                </span>
-              </div>
-              <div className="info-panel">
-                <span className="indication-title">Primary Indication:</span>
-                <span className="indication-text">
-                  {medicineInfo[prediction]?.indication ||
-                    "No indication available."}
-                </span>
-              </div>
+          <div className="info-panels">
+            <div className="info-panel">
+              <span className="medicine-name">
+                Generic Medicine: {prediction}
+              </span>
+              <span className="medicine-description">
+                General Description:{" "}
+                {medicineInfo[prediction]?.description ||
+                  "No description available."}
+              </span>
             </div>
-          ) : (
-            <div className="not-recognizing">
-              <div className="error-message">
-                <h3>No Generic Medicine Detected</h3>
-                <p>
-                  The system doesn't recognize the current object as any of the
-                  trained generic medicine classes. Please point the camera at a
-                  generic medicine.
-                </p>
-                <p className="confidence-info">
-                  Confidence level: {(confidenceLevel * 100).toFixed(2)}%
-                  (Threshold: {CONFIDENCE_THRESHOLD * 100}%)
-                </p>
-              </div>
+            <div className="info-panel">
+              <span className="indication-title">Primary Indication:</span>
+              <span className="indication-text">
+                {medicineInfo[prediction]?.indication ||
+                  "No indication available."}
+              </span>
             </div>
-          )}
+          </div>
         </section>
       </main>
     </div>

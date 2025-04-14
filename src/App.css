@@ -28,6 +28,7 @@ html, body {
 
 /* The video section container */
 .video-section {
+
   padding: 0.8rem;
   border-radius: 16px;
   max-width: 1050px;
@@ -93,58 +94,6 @@ html, body {
   line-height: 1.5;
 }
 
-/* Error message when no medicine is detected */
-.not-recognizing {
-  display: flex;
-  gap: 1.5rem;
-  width: 100%;
-}
-
-.error-message {
-  background-color: #f44336;
-  width: 100%;
-  min-height: 150px;
-  padding: 1.5rem;
-  border-radius: 20px;
-  font-weight: 500;
-  color: #fff;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  word-wrap: break-word;
-  white-space: normal;
-  overflow-wrap: break-word;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  line-height: 1.5;
-  transition: all 0.3s ease;
-}
-
-.error-message h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 0.6rem;
-}
-
-.error-message p {
-  font-weight: 400;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-}
-
-.confidence-info {
-  margin-top: 0.8rem;
-  font-size: 0.85rem;
-  opacity: 0.85;
-}
-
-.confidence-level {
-  display: block;
-  font-size: 0.9rem;
-  margin-bottom: 0.6rem;
-  opacity: 0.9;
-}
-
 /* Style for the title texts */
 .info-panel strong,
 .medicine-name,
@@ -176,6 +125,8 @@ html, body {
   object-fit: contain;
 }
 
+
+
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .video-section {
@@ -188,8 +139,9 @@ html, body {
 }
 
 @media (max-width: 768px) {
-  .info-panels, 
-  .not-recognizing {
+
+
+  .info-panels {
     flex-direction: column;
     margin: auto;
   }
@@ -198,7 +150,9 @@ html, body {
     color: #0288D1;
     margin-left: 2rem;
     font-size: 1.8rem;
+
   }
+
 
   .switch-camera-btn {
     background: transparent;
