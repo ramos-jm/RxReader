@@ -110,7 +110,7 @@ const App: React.FC = () => {
 
           tf.dispose([imageTensor, predictionTensor]);
         }
-      }, 2000); // Prediction interval
+      }, 3000); // Prediction interval
 
       return () => {
         clearInterval(interval);
