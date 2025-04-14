@@ -123,11 +123,6 @@ const App: React.FC = () => {
     setFacingMode((prevMode) => (prevMode === "user" ? "environment" : "user"));
   };
 
-  // // Conditional styling: Mirror video only for front camera
-  // const getVideoStyles = () => {
-  //   return facingMode === "user" ? { transform: "scaleX(-1)" } : {};
-  // };
-
   const medicineInfo: {
     [key: string]: { description: string; indication: string };
   } = {
@@ -244,7 +239,6 @@ const App: React.FC = () => {
               playsInline
               width="550"
               height="720"
-              // style={getVideoStyles()}
             ></video>
           </div>
           <div className="info-panels">

@@ -159,7 +159,7 @@ html, body {
     border: none;
     padding: 0;
     cursor: pointer;
-    margin-left: .5rem;
+    margin-left: .5rem;/**/
   }
   
   .switch-camera-img {
