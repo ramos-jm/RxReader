@@ -11,6 +11,7 @@ const App: React.FC = () => {
   const [facingMode, setFacingMode] = useState<"user" | "environment">("user");
   const [confidenceLevel, setConfidenceLevel] = useState<number>(0);
   const [isRecognizing, setIsRecognizing] = useState<boolean>(true);
+  const [showModal, setShowModal] = useState<boolean>(true);
 
   // Confidence threshold for valid predictions
   const CONFIDENCE_THRESHOLD = 0.54;
@@ -141,9 +142,13 @@ const App: React.FC = () => {
   };
 
   // Conditional styling: Mirror video only for front camera
-  // const getVideoStyles = () => {
-  //   return facingMode === "user" ? { transform: "scaleX(-1)" } : {};
-  // };
+  const getVideoStyles = () => {
+    return facingMode === "user" ? { transform: "scaleX(-1)" } : {};
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   const medicineInfo: {
     [key: string]: { description: string; indication: string };
@@ -261,7 +266,7 @@ const App: React.FC = () => {
               playsInline
               width="550"
               height="720"
-              // style={getVideoStyles()}
+              style={getVideoStyles()}
             ></video>
           </div>
 
@@ -306,6 +311,36 @@ const App: React.FC = () => {
           )}
         </section>
       </main>
+
+      {/* Instruction Modal */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="instruction-modal">
+            <button className="close-modal" onClick={closeModal}>
+              ×
+            </button>
+            <h2>How to Use Our App</h2>
+
+            <div className="instruction-text">
+              <h3>Quick Guide:</h3>
+              <ol>
+                <li>Allow camera access when prompted</li>
+                <li>Point your camera at a generic medicine</li>
+                <li>Hold steady for accurate recognition</li>
+                <li>View medicine information below the video feed</li>
+                <li>
+                  Use the camera switch button to toggle between front and rear
+                  cameras
+                </li>
+              </ol>
+              <p>
+                This app can identify 20 different generic medicines and provide
+                information about each one.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
