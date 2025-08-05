@@ -90,7 +90,12 @@ Here, the TensorFlow.js model continuously processes frames in real time, ready 
 ---
 
 ### 📊 Results (Real-time Updates)
-![Results](results.png)  
+Normal Results:
+![Results](results.png)
+
+Error Handling:
+![Error](error.png)
+
 The **Results Section**, integrated within the same interface, dynamically updates based on what the model detects.  
 Recognized medicine names and confidence scores are displayed immediately, enabling a seamless, real-time prescription recognition experience.
 
