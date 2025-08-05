@@ -79,9 +79,13 @@ Desktop View:
 
 ![Homepage](home.png)
 
-Mobile View:
 
-![Homepage](mobile.jpg)
+
+<h4 align="center">
+  Mobile View:
+  <br>
+  <img src="mobile.jpg" alt="Homepage" height="400">
+</h4>
 
 
 The **Home Interface** serves as the central workspace where the live camera feed is displayed.  
@@ -90,12 +94,10 @@ Here, the TensorFlow.js model continuously processes frames in real time, ready 
 ---
 
 ### 📊 Results (Real-time Updates)
-Normal Results:
+#### Normal Results:
 ![Results](results.png)
-
-Error Handling:
+#### Error Handling:
 ![Error](error.png)
-
 The **Results Section**, integrated within the same interface, dynamically updates based on what the model detects.  
 Recognized medicine names and confidence scores are displayed immediately, enabling a seamless, real-time prescription recognition experience.
 
