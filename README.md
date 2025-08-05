@@ -82,10 +82,12 @@ Desktop View:
 
 
 <h4 align="center">
-  Mobile View:
+    Mobile View:
   <br>
   <img src="mobile.jpg" alt="Homepage" height="400">
 </h4>
+
+
 
 
 The **Home Interface** serves as the central workspace where the live camera feed is displayed.  
