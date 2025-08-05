@@ -62,3 +62,39 @@ RXReader/
 ├── tsconfig.json           # TypeScript configuration (Global)
 ├── tsconfig.node.json      # TypeScript configuration (Node)
 └── vite.config.ts          # Vite configuration
+
+```
+
+## 📸 Media Previews
+
+### 📝 Instructions (Modal)
+![Instructions Modal](instructions.png)  
+The **Instructions Modal** provides users with clear, step-by-step guidance on how to use RXReader.  
+It appears on top of the interface, explaining how to position prescriptions for the camera and ensuring accurate, real-time recognition.
+
+---
+
+### 🏠 Home (Real-time View)
+Desktop View:
+
+![Homepage](home.png)
+
+Mobile View:
+
+![Homepage](mobile.png)
+
+
+The **Home Interface** serves as the central workspace where the live camera feed is displayed.  
+Here, the TensorFlow.js model continuously processes frames in real time, ready to detect and classify handwritten medicine names instantly.
+
+---
+
+### 📊 Results (Real-time Updates)
+![Results](results.png)  
+The **Results Section**, integrated within the same interface, dynamically updates based on what the model detects.  
+Recognized medicine names and confidence scores are displayed immediately, enabling a seamless, real-time prescription recognition experience.
+
+
+
+
+
