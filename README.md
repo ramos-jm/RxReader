@@ -68,7 +68,7 @@ RXReader/
 ## 📸 Media Previews
 
 ### 📝 Instructions (Modal)
-![Instructions Modal](instructions.png)  
+![Instructions Modal](instruction.png)  
 The **Instructions Modal** provides users with clear, step-by-step guidance on how to use RXReader.  
 It appears on top of the interface, explaining how to position prescriptions for the camera and ensuring accurate, real-time recognition.
 
@@ -81,7 +81,7 @@ Desktop View:
 
 Mobile View:
 
-![Homepage](mobile.png)
+![Homepage](mobile.jpg)
 
 
 The **Home Interface** serves as the central workspace where the live camera feed is displayed.  
